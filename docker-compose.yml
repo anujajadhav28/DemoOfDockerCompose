@@ -1,0 +1,27 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "9090:9090"
+    networks:
+      - default
+    
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - default
+    volumes:
+      - web_db_vol:/data/db
+
+networks:
+  default:
+    driver: overlay
+
+volumes:
+  web_db_vol:
+
+
+
